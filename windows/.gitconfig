@@ -1,0 +1,21 @@
+[alias]
+	a = add .
+	cm = commit -m
+	p = push
+	pf = push --force
+	s = status
+	cd = checkout develop
+	co = checkout
+	cob = checkout -b
+	ca = commit --amend --no-edit
+	acapf = !git a && git ca && git pf
+[user]
+	email = brucker117@gmail.com
+	name = Ben Rucker
+[core]
+	editor = code --wait
+[gui]
+	recentrepo = C:/Users/bruck/github/whid-site-nuxt
+	recentrepo = D:/Games/Steam/steamapps/common/Nuclear Throne/mods/whid
+[push]
+	autoSetupRemote = true
