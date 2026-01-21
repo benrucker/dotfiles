@@ -1,0 +1,8 @@
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+# Adjust the format to display branch information
+zstyle ':vcs_info:git:*' formats '%b'
+
+setopt PROMPT_SUBST
+PROMPT='%F{green}%D{%l:%M%p}%f %F{blue}%~%f %F{red}${vcs_info_msg_0+${vcs_info_msg_0} }%f '
