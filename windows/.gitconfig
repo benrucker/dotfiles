@@ -1,21 +1,55 @@
 [alias]
 	a = add .
+	aca = !git a && git ca
+	acr = !git a && git crr
+	acapf = !git a && git ca && git pf
+	acrp = !git a && git cr && git p
+	b = branch -v
+	bd = branch -D
+	branchName = rev-parse --abbrev-ref HEAD
+	c = commit
+	ca = commit --amend --no-edit
 	cm = commit -m
-	p = push
-	pf = push --force
-	s = status
+	cr = commit -m "CR"
+	crp = !git cr && git p
 	cd = checkout develop
 	co = checkout
 	cob = checkout -b
-	ca = commit --amend --no-edit
-	acapf = !git a && git ca && git pf
+	cp = cherry-pick
+	g = !git
+	p = push
+	pf = push --force
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbo = rebase --onto
+	rbs = rebase --skip
+	rpo = remote prune origin
+	s = status
+[branch]
+	sort = -committerdate
+[core]
+	editor = code --wait
+	fsmonitor = true
+	untrackedCache = true
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[help]
+	autocorrect = prompt
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+[rerere]
+	enabled = true
+	autoupdate = true
 [user]
 	email = brucker117@gmail.com
 	name = Ben Rucker
-[core]
-	editor = code --wait
-[gui]
-	recentrepo = C:/Users/bruck/github/whid-site-nuxt
-	recentrepo = D:/Games/Steam/steamapps/common/Nuclear Throne/mods/whid
-[push]
-	autoSetupRemote = true
