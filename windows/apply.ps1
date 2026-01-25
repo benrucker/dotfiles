@@ -16,15 +16,21 @@ Copy-Item -Path $gitignoreSrc -Destination $gitignoreDst -Force
 git config --global core.excludesFile $gitignoreDst
 Write-Host "  [OK] .gitignore_global -> $gitignoreDst" -ForegroundColor Green
 
-# Apply PowerShell profile
+# Apply PowerShell profile to both PS 5.1 and PS 7 locations
 $profileSrc = Join-Path $ScriptDir "Microsoft.PowerShell_profile.ps1"
-$profileDir = Split-Path -Parent $PROFILE
-if (-not (Test-Path $profileDir)) {
-    New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
-    Write-Host "  [OK] Created $profileDir" -ForegroundColor Green
+$profilePaths = @(
+    Join-Path $HOME "Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"  # PS 5.1
+    Join-Path $HOME "Documents\PowerShell\Microsoft.PowerShell_profile.ps1"         # PS 7
+)
+foreach ($profileDst in $profilePaths) {
+    $profileDir = Split-Path -Parent $profileDst
+    if (-not (Test-Path $profileDir)) {
+        New-Item -ItemType Directory -Path $profileDir -Force | Out-Null
+        Write-Host "  [OK] Created $profileDir" -ForegroundColor Green
+    }
+    Copy-Item -Path $profileSrc -Destination $profileDst -Force
+    Write-Host "  [OK] PowerShell profile -> $profileDst" -ForegroundColor Green
 }
-Copy-Item -Path $profileSrc -Destination $PROFILE -Force
-Write-Host "  [OK] PowerShell profile -> $PROFILE" -ForegroundColor Green
 
 Write-Host "`nDotfiles applied successfully!" -ForegroundColor Cyan
 Write-Host "Restart your terminal to use the new settings." -ForegroundColor Yellow
