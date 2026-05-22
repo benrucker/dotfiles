@@ -11,3 +11,5 @@ function prompt
 	$prompt = "$esc[32m$time$esc[38;5;14m $currentPath$esc[39m > "
 	$prompt
 }
+
+fnm env --use-on-cd --version-file-strategy=recursive --shell powershell | Out-String | Invoke-Expression
